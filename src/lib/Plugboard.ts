@@ -1,3 +1,5 @@
+import { getChar, getCharNum } from "./Util";
+
 export class Plugboard {
   private mapping: Map<number, number>;
 
@@ -6,8 +8,15 @@ export class Plugboard {
   }
 
   addWwire(firstCharNum: number, secondCharNum: number) {
-    if (this.mapping.has(firstCharNum) || this.mapping.has(secondCharNum))
-      throw new Error("Letter already added to plugboard");
+    if (this.mapping.has(firstCharNum)) {
+      throw new Error(
+        `Letter ${getChar(firstCharNum)} already added to plugboard`
+      );
+    }
+    if (this.mapping.has(secondCharNum))
+      throw new Error(
+        `Letter ${getChar(secondCharNum)} already added to plugboard`
+      );
 
     this.mapping.set(firstCharNum, secondCharNum);
     this.mapping.set(secondCharNum, firstCharNum);
@@ -22,6 +31,12 @@ export class Plugboard {
   forward(charNum: number) {
     const result = this.mapping.get(charNum);
     return result !== undefined ? result : charNum;
+  }
+
+  addWires(tokens: string[]) {
+    for (const token of tokens) {
+      this.addWwire(getCharNum(token[0]), getCharNum(token[1]));
+    }
   }
 
   print() {

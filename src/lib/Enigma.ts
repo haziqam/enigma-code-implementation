@@ -40,66 +40,90 @@ export class Enigma {
     } else if (this.rightRotor.isAtNotch()) {
       this.middleRotor.turnover();
     }
-
     this.rightRotor.turnover();
   }
 
-  encrypt(charNum: number): number {
+  encrypt(charNum: number): {
+    result: number;
+    step: string;
+    rotorPosition: string;
+  } {
+    const step: string[] = [];
     this.rotate();
-    console.log(`Keyboard input: ${getChar(charNum)}`);
-    console.log(
-      `Rotor position: ${getChar(this.leftRotor.rotorPosition)} ${getChar(
-        this.middleRotor.rotorPosition
-      )} ${getChar(this.rightRotor.rotorPosition)}`
-    );
+    const rotorPosition = `${getChar(this.leftRotor.rotorPosition)}${getChar(
+      this.middleRotor.rotorPosition
+    )}${getChar(this.rightRotor.rotorPosition)}`;
+    step.push(`Keyboard input: ${getChar(charNum)}`);
+    step.push(`Rotor positions: ${rotorPosition}`);
 
     // Masuk plugboard
     const c = this.plugboard.forward(charNum);
-    console.log(`Plugboard encryption: ${getChar(c)}`);
+    step.push(`Plugboard encryption: ${getChar(c)}`);
 
     // Masuk ke rotor kanan sampai rotor kiri
-    // Right to left
     const c1 = this.rightRotor.forward(c);
-    console.log(`Wheel 3 encryption: ${getChar(c1)}`);
+    step.push(`Wheel 3 encryption: ${getChar(c1)}`);
     const c2 = this.middleRotor.forward(c1);
-    console.log(`Wheel 2 encryption: ${getChar(c2)}`);
+    step.push(`Wheel 2 encryption: ${getChar(c2)}`);
     const c3 = this.leftRotor.forward(c2);
-    console.log(`Wheel 1 encryption: ${getChar(c3)}`);
+    step.push(`Wheel 1 encryption: ${getChar(c3)}`);
 
     // Reflector
     const c4 = this.reflector.forward(c3);
-    console.log(`Rotor encryption: ${getChar(c4)}`);
+    step.push(`Rotor encryption: ${getChar(c4)}`);
 
     // Masuk ke rotor kiri sampai rotor kanan
     const c5 = this.leftRotor.backward(c4);
-    console.log(`Wheel 1 encryption: ${getChar(c5)}`);
+    step.push(`Wheel 1 encryption: ${getChar(c5)}`);
     const c6 = this.middleRotor.backward(c5);
-    console.log(`Wheel 2 encryption: ${getChar(c6)}`);
+    step.push(`Wheel 2 encryption: ${getChar(c6)}`);
     const c7 = this.rightRotor.backward(c6);
-    console.log(`Wheel 3 encryption: ${getChar(c7)}`);
+    step.push(`Wheel 3 encryption: ${getChar(c7)}`);
 
     // Keluar plugboard
     const c8 = this.plugboard.forward(c7);
-    console.log(`Plugboard encryption: ${getChar(c8)}`);
-    console.log("============================");
-    return c8;
+    step.push(`Plugboard encryption: ${getChar(c8)}`);
+    step.push("============================");
+    return {
+      result: c8,
+      step: step.join("\n"),
+      rotorPosition: rotorPosition,
+    };
   }
 
-  encryptString(input: string): string {
-    const result = [];
+  encryptString(input: string): {
+    result: string;
+    steps: string;
+    rotorPositionSequence: string[];
+  } {
+    const result: string[] = [];
+    const RPS: string[] = [];
+    const steps: string[] = [];
     for (const char of input) {
       const charNum = getCharNum(char);
-      const encryptedCharNum = this.encrypt(charNum);
+      const {
+        result: encryptedCharNum,
+        step: step,
+        rotorPosition: rotorPosition,
+      } = this.encrypt(charNum);
       const encryptedChar = getChar(encryptedCharNum);
       result.push(encryptedChar);
+      RPS.push(rotorPosition);
+      steps.push(step);
     }
-    return result.join("");
+    return {
+      result: result.join(""),
+      steps: steps.join("\n"),
+      rotorPositionSequence: RPS,
+    };
   }
 }
 
 // const enigma = Enigma.create(
-//   ["III", "I", "II"],
-//   [getCharNum("I"), getCharNum("K"), getCharNum("N")],
+//   ["II", "III", "I"],
+//   [getCharNum("G"), getCharNum("P"), getCharNum("O")],
 //   "UKW-B"
 // );
-// console.log(enigma.encryptString("APAMAUMUSIAPADIRINYA"));
+// const a = enigma.encryptString("AABBCCDDEE");
+
+// console.log(a.steps);

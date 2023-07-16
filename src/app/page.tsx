@@ -1,5 +1,11 @@
-import styles from "./page.module.css";
+import React from "react";
+import { EnigmaDisplay } from "@/components/EnigmaDisplay";
 
 export default function Home() {
-  return <></>;
+  return (
+    <>
+      <h1>Enigma simulator</h1>
+      <EnigmaDisplay />
+    </>
+  );
 }

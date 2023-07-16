@@ -1,0 +1,50 @@
+.formSection {
+  margin: 5px 0 16px 0;
+}
+
+.rotorOptions {
+  display: flex;
+  justify-content: space-between;
+  gap: 70px;
+  margin: 10px 0;
+  border: rgb(153, 153, 153);
+}
+
+.rotorLetter {
+  border: solid 1px black;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 5px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 70%;
+  box-shadow: 0 0 2px rgb(147, 147, 147);
+  border-radius: 4px;
+  min-height: 400px;
+  margin: 16px 16px;
+}
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.resultText {
+  border: solid 1px rgb(183, 183, 183);
+  padding: 16px;
+  border-radius: 5px;
+  width: 85%;
+  min-height: 50px;
+  box-sizing: border-box;
+  margin: 0 16px;
+  word-wrap: break-word;
+}
