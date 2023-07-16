@@ -52,7 +52,14 @@ export function EnigmaDisplay() {
     setCiphertext("");
     setStepsText("");
     if (plaintext === "") return;
-    const removedSpaceText = tokenize(plaintext).join("").toUpperCase();
+    const regex = /^[A-Za-z\s]+$/;
+    if (!regex.test(plaintext)) {
+      alert("Invalid input");
+      return;
+    }
+    const tokenizedText = tokenize(plaintext);
+    if (tokenizedText === null) return;
+    const removedSpaceText = tokenizedText.join("").toUpperCase();
     const { result, steps, rotorPositionSequence } =
       enigmaObj.encryptString(removedSpaceText);
 
@@ -107,8 +114,8 @@ export function EnigmaDisplay() {
               control={
                 <Switch
                   value={showSteps}
-                  onChange={(e) => {
-                    setShowSteps(!showSteps);
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+                    setShowSteps(event.target.checked);
                   }}
                 />
               }
