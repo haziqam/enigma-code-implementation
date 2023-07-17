@@ -1,34 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Description
 
-## Getting Started
+<img src='public/img/Picture1.png'/>
+<img src='public/img//Picture2.png'/>
+<img src='public/img//Picture3.png'/>
+<img src='public/img//Picture4.png'/>
 
-First, run the development server:
+## How to Use
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+1. Run locally or click [here]() to run remotely
+2. Click `SETTINGS` button to set up the Enigma configuration
+3. Insert rotor type and initial letter for each rotors
+4. [Optional] Insert plugboard wires. The correct format is `AB JC EK QL`. Click the `+` button
+5. [Optional] To remove plugboard wires, select the wire to remove and click the trash button
+6. Click `save`
+7. [Optional] If you want to show the encryption steps, check the `Show steps` switch
+8. Insert the plaintext in the input form
+9. Click `encrypt`
+10. The ciphertext and steps will be shown in the result box.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How to Run Locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone this repository
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   git clone https://github.com/haziqam/enigma-code-implementation.git
+   ```
 
-## Learn More
+2. Navigate to the root directory of this project
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+   cd enigma-code-implementation
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Install dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```
+   npm install
+   ```
 
-## Deploy on Vercel
+4. Run the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Technologies used
+
+- [Next.js](https://nextjs.org/) as project framework
+- [Vercel](https://vercel.com/) for deployment
+- CSS for custom styling
+
+## Author
+
+- Haziq Abiyyu Mahdy (13521170)

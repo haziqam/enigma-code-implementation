@@ -70,7 +70,7 @@ export class Enigma {
 
     // Reflector
     const c4 = this.reflector.forward(c3);
-    step.push(`Rotor encryption: ${getChar(c4)}`);
+    step.push(`Reflector encryption: ${getChar(c4)}`);
 
     // Masuk ke rotor kiri sampai rotor kanan
     const c5 = this.leftRotor.backward(c4);
