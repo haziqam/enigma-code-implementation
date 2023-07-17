@@ -7,7 +7,7 @@
 
 ## How to Use
 
-1. Run locally or click [here]() to run remotely
+1. Run locally or click [here](https://enigma-code-implementation.vercel.app/) to run remotely
 2. Click `SETTINGS` button to set up the Enigma configuration
 3. Insert rotor type and initial letter for each rotors
 4. [Optional] Insert plugboard wires. The correct format is `AB JC EK QL`. Click the `+` button
